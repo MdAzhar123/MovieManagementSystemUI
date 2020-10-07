@@ -1,0 +1,26 @@
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+      <h2>Movie Details</h2>
+    </div>
+    <div class="panel-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Movie Id</th>
+            <th>Movie Name</th>
+            <th>Movie in the Theatre</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let movie of movies">
+            <td>{{movie.movie_id}}</td>
+            <td>{{movie.movie_name}}</td>  
+            
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <button (click)="backToMovieList()">Go back To List</button>
+  </div>

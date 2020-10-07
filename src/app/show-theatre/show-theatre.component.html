@@ -1,0 +1,29 @@
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+      <h2>Theatre List</h2>
+      
+    </div>
+    <div class="panel-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Theatre Id</th>
+            <th>Theatre Name</th>
+            <th>Movies</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let theatre of theatres">
+            <td>{{theate.theatre_id}}</td>
+            <td>{{theate.theatre_name}}</td>  
+            <td>
+           
+             <button (click)="movieDetails()" class="btn btn-info" style="margin-left: 10px">All Movies</button>  
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <button (click)="backToCity()" class="btn btn-info" style="margin-left: 10px">BackToCity</button>
+    </div>
+  </div>

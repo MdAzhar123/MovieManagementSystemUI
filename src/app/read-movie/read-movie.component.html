@@ -1,0 +1,32 @@
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+      <h2>City Details</h2>
+    </div>
+    <div class="panel-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Movie Id</th>
+            <th>Movie Name</th>
+            <th>Thetre Details</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+      
+          {{errorMsg}}
+          <tr *ngFor="let movie of movies">
+            
+            <td>{{movie.movie_id}}</td>
+            <td>{{movie.movie_name}}</td>  
+             <td>  <button (click)="movieDetails(movie.movie_id)" class="btn btn-info" style="margin-left: 10px">Movie Details</button>
+            </td> 
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <button (click)="backToList()">Go back To List</button>
+  </div>
