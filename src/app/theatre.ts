@@ -1,3 +1,5 @@
+import { Movie } from './movie';
+
 export class Theatre
 {
 
@@ -5,6 +7,8 @@ export class Theatre
 
     private thatre_name:string;
 
-    private city_id:number;
+    private movieList:Movie[];
+
+    private msg:string;
 
 }

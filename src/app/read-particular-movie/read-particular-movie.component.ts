@@ -11,31 +11,32 @@ import { MovieService } from '../movie.service';
 })
 export class ReadParticularMovieComponent implements OnInit {
 
-  movies:Movie[]=[];
+  movies:Movie[];
   id:number;
 errorMsg;
   constructor(private movieService:MovieService,private router:Router,private route:ActivatedRoute) { }
 
   ngOnInit() {
-    this.id=this.route.snapshot.params["movie_id"];
+    this.id=this.route.snapshot.params["id"];
     this.onFetchMovieDetails()
   }
   onFetchMovieDetails(){
     return this.movieService.getMovie(this.id).subscribe(
 
       response=>{
-        this.movies=response;
+        this.movies=response.movieDetails;
         console.log(response);
+        console.log(this.movies);
       },error=>{
-        this.errorMsg=error;
-        console.log('HTTP ERROR',error);
+        this.errorMsg='UnAuthorized to access details';
+        
       }
 
     );
   }
 
-  backToMovieList(){
-    this.router.navigate(["movie-details"]);
+  backToLogin(){
+    this.router.navigate(["login"]);
   }
 
 }

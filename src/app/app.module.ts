@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { ShowCityComponent } from './show-city/show-city.component';
 import { ReadCityComponent } from './read-city/read-city.component';
 
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule,HTTP_INTERCEPTORS} from '@angular/common/http';
 import { CheckComponent } from './check/check.component';
 import { ShowTheatreComponent } from './show-theatre/show-theatre.component';
 import { ReadTheatreComponent } from './read-theatre/read-theatre.component';
@@ -16,7 +16,8 @@ import { ShowMovieComponent } from './show-movie/show-movie.component';
 import { ReadMovieComponent } from './read-movie/read-movie.component';
 import { ReadParticularMovieComponent } from './read-particular-movie/read-particular-movie.component';
 import { LoginComponent } from './login/login.component'
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoginInterceptorService } from './login-interceptor.service';
 
 
 @NgModule({
@@ -47,9 +48,10 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [{provide:HTTP_INTERCEPTORS,useClass:LoginInterceptorService,multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CheckComponent } from './check/check.component';
+import { AuthGuard } from './guards/auth.guard';
 import { LoginComponent } from './login/login.component';
 import { ReadCityComponent } from './read-city/read-city.component';
 import { ReadMovieComponent } from './read-movie/read-movie.component';
@@ -24,10 +25,10 @@ const routes: Routes = [
   {path:'details/:id',component:ReadCityComponent},
   {path:'check',component:CheckComponent},
   {path:'theatre-show',component:ShowTheatreComponent},
-  {path:'theatre-details/:id',component:ReadTheatreComponent},
+  {path:'theatre-details',component:ReadTheatreComponent},
   {path:'movie-show',component:ShowMovieComponent},
-  {path:'movie-particular-details/:movie_id',component:ReadParticularMovieComponent},
-  {path:'theatre-particular-details/:thatre_id',component:ReadParticularTheatreComponent},
+  {path:'movie-particular-details/:id',component:ReadParticularMovieComponent},
+  {path:'theatre-particular-details',component:ReadParticularTheatreComponent},
   {path:'movie-details/:theatre_id',component:ReadMovieComponent},
   {path:'login',component:LoginComponent}
 

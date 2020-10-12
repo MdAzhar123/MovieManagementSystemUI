@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CityService } from '../city.service';
 import { Theatre } from '../theatre';
@@ -13,33 +14,65 @@ import { TheatreService } from '../theatre.service';
 export class ReadParticularTheatreComponent implements OnInit {
 
   id:number;
-  theatres:Theatre[]=[];
+  theatres:Theatre[];
+  errorMsg;
+
+  formGroup:FormGroup;
+
+
 
   constructor(private http:HttpClient,private router:Router,private route:ActivatedRoute,
     private theatreService:TheatreService) { }
 
   ngOnInit() {
 
-    this.id=this.route.snapshot.params["theatre_id"];
-    this.getParticularTheatre();
+    this.initForm();
+
+   
+    
 
   }
+
+
+  onSubmit(){
+    this.id=this.formGroup.value.theatre_id;
+    console.log(this.id);
+    this.getParticularTheatre();
+  }
+
   getParticularTheatre()
   {
     return this.theatreService.getTheatre(this.id).subscribe(
       response=>{
-        this.theatres=response;
+        this.theatres=[response];
+        console.log(response);
+        console.log(this.theatres);
+      },error=>{
+        this.errorMsg='UnAuthorized to acess these details';
       }
     )
   }
 
-  backToList(){
-    this.router.navigate(["theatre-details",this.id]);
+  backToLogin(){
+    this.router.navigate(["login"]);
   }
 
-  movieDetails(theatre_id:number)
+  movieDetails(id:number)
   {
-    this.router.navigate(["movie-details",theatre_id]);
+    this.router.navigate(["movie-particular-details",id]);
   }
+
+
+  initForm(){
+
+    this.formGroup=new FormGroup(
+      {
+        theatre_id:new FormControl('',[Validators.required])
+      }
+    )
+
+
+  }
+
 
 }

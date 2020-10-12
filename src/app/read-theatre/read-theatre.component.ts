@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CityService } from '../city.service';
 import { Theatre } from '../theatre';
@@ -12,10 +13,10 @@ import { TheatreService } from '../theatre.service';
 })
 export class ReadTheatreComponent implements OnInit {
 
+  formGroup:FormGroup;
 
   id:number;
-  theatre_id:number;
-  theatres:Theatre[]=[];
+  
   errorMsg;
 
   constructor(private router:Router,private route:ActivatedRoute,private http:HttpClient,
@@ -23,34 +24,27 @@ export class ReadTheatreComponent implements OnInit {
 
   ngOnInit() {
 
-    this.id=this.route.snapshot.params["id"];
-    this.ongetTheatre();
+    this.initForm();
 
   }
 
-  ongetTheatre()
-  {
-    this.theatreService.getTheatre(this.id).subscribe(
-      response=>{
-        this.theatres=response;
-      },error=>{
-        this.errorMsg=error;
-        console.log('HTTP ERROR',error);
+  initForm(){
+
+    this.formGroup=new FormGroup(
+      {
+        id:new FormControl('',[Validators.required])
       }
-    );
+    )
+
+
   }
 
-  getTheatreDetail(theatre_id:number)
+  onSubmit()
   {
-     this.router.navigate(["theatre-particular-details",theatre_id]);
-  }
-  backToList(){
-    this.router.navigate(["theatre-show"]);
+    
   }
 
-  movieDetails(){
-    this.router.navigate(["movie-show"]);
-  }
+  
 
 
   
